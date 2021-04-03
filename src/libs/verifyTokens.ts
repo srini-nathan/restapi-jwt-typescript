@@ -14,7 +14,7 @@ export const tokenValidation = (
   const token = req.header("auth-token");
   if (!token) return res.status(401).json("Access Denied");
 
-  const payload = jwt.verify(token, process.env.JWT_TOKEN_SECRET) as IPayload;
+  const payload = jwt.verify(token, process.env.JWT_TOKEN_SECRET ?? "testsecret") as IPayload;
   console.log(payload);
   req.userId = payload._id
 
